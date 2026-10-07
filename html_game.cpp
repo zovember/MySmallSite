@@ -31,7 +31,7 @@ namespace html_game {
     const paddleHeight = grid * 5; // 80
     const maxPaddleY = canvas.height - grid - paddleHeight;
 
-    const rad360 = Math.Pi * 2;
+    const rad360 = Math.PI * 2;
 
     var paddleSpeed = 6;
     var ballSpeed = 4;
@@ -147,14 +147,14 @@ namespace html_game {
 
         // move ball next to the paddle otherwise the collision will happen again
         // in the next frame
-        ball.x = rightPaddle.x - ball.width;
+        ball.x = rightPaddle.x - ball.radius;
       }
 
       // draw ball
       //context.fillRect(ball.x, ball.y, ball.width, ball.height);
       context.beginPath();
       context.fillStyle = 'white';
-      context.arc(ball.x, ball.y, 50, 0, rad360);
+      context.arc(ball.x, ball.y, ball.radius, 0, rad360);
       context.fill();
 
       // draw walls
