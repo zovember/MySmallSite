@@ -2,7 +2,7 @@
 
 
 namespace html_game {
-  
+
     std::string html_game = R"(<!DOCTYPE html>\n
     <html>
     <head>
@@ -31,6 +31,8 @@ namespace html_game {
     const paddleHeight = grid * 5; // 80
     const maxPaddleY = canvas.height - grid - paddleHeight;
 
+    const rad360 = Math.Pi * 2;
+
     var paddleSpeed = 6;
     var ballSpeed = 4;
 
@@ -58,8 +60,7 @@ namespace html_game {
       // start in the middle of the game
       x: canvas.width / 2,
       y: canvas.height / 2,
-      width: grid,
-      height: grid,
+      radius: grid,
 
       // keep track of when need to reset the ball position
       resetting: false,
@@ -150,7 +151,11 @@ namespace html_game {
       }
 
       // draw ball
-      context.fillRect(ball.x, ball.y, ball.width, ball.height);
+      //context.fillRect(ball.x, ball.y, ball.width, ball.height);
+      context.beginPath();
+      context.fillStyle = 'white';
+      context.arc(ball.x, ball.y, 50, 0, rad360);
+      context.fill();
 
       // draw walls
       context.fillStyle = 'lightgrey';
@@ -164,6 +169,7 @@ namespace html_game {
     }
 
     // listen to keyboard events to move the paddles
+    document.addEventListener('keydown', function(e) {
     document.addEventListener('keydown', function(e) {
 
       // up arrow key
