@@ -8,6 +8,10 @@ int main() {
     // HTTPS
     //httplib::SSLServer svr;
 
+    server.Get("/", [](const httplib::Request &, httplib::Response &res) {
+        res.set_redirect("/game", 301);
+    });
+
     server.Get("/game", [](const httplib::Request &, httplib::Response &res) {
         res.set_content(html_game::html_game, "text/html");
     });
